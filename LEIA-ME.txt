@@ -1,0 +1,23 @@
+CONVITE FINAL – LIS CALDAS 50 ANOS (Modelo 2 · A Revelação)
+Sales Soluções
+============================================================
+
+SUBIR NO GITHUB PAGES
+- Suba TODOS os arquivos desta pasta direto na raiz do repositório
+  (index.html, os .js, os .css, musica.mp3, robots.txt e a pasta fotos).
+- Settings > Pages > Branch main / (root) > Save.
+
+COMO FUNCIONA
+1. Abre com a máscara na fumaça: "Quem está por trás da máscara?"
+2. Toque em "Toque para revelar" -> filme: Lis de costas -> saindo da fumaça ->
+   nome e 50 -> troca de vestido -> data.
+3. No fim do filme abre o convite e a MÚSICA COMEÇA SOZINHA (e repete ao terminar).
+   Botão dourado no canto para pausar.
+
+EDITAR (config.js)
+- Data/hora, endereço, WhatsApp do cerimonial (79 99997-5006), traje, presentes e valores.
+- QR Code e Pix copia e cola são gerados sozinhos com o valor certo.
+
+PRÉVIA NO WHATSAPP
+- No index.html troque content="fotos/capa-whatsapp.jpg" pelo link completo:
+  https://SEU-USUARIO.github.io/NOME-DO-REPO/fotos/capa-whatsapp.jpg

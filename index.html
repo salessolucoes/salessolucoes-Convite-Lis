@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#090806">
+  <!-- Segurança: não aparece no Google, não envia dados para outros sites e só roda os scripts desta pasta -->
+  <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; media-src 'self' blob:; frame-src https://maps.google.com https://www.google.com; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Lis Caldas · 50 anos | Baile de Máscaras</title>
+  <meta name="description" content="Você está convidado(a) para o Baile de Máscaras dos 50 anos de Lis Caldas.">
+  <!-- Prévia no WhatsApp: depois de subir, troque "fotos/capa-whatsapp.jpg" pelo link completo (https://...) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Lis Caldas · 50 anos 🎭 Baile de Máscaras">
+  <meta property="og:description" content="Toque para revelar a anfitriã do baile.">
+  <meta property="og:image" content="fotos/capa-whatsapp.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Pinyon+Script&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="comum.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="m-revelacao">
+
+  <div id="abertura" class="abertura">
+    <video class="ab-video" id="abVideo" muted playsinline autoplay preload="auto" poster="fotos/mascara-lis.jpg">
+      <source src="fotos/mascara-lis.mp4" type="video/mp4">
+    </video>
+    <div class="ab-escurece" aria-hidden="true"></div>
+    <div class="ab-txt">
+      <p class="ab-k">Baile de Máscaras</p>
+      <p class="ab-misterio">Quem está por trás da máscara?</p>
+      <button class="btn btn-cheio" id="revelar" type="button">✨ Toque para revelar</button>
+      <p class="ab-som">🔊 aumente o volume</p>
+    </div>
+    <div class="filme" id="filme" hidden>
+      <video id="filmeVideo" muted playsinline preload="auto" poster="fotos/filme-lis.jpg">
+        <source src="fotos/filme-lis.mp4" type="video/mp4">
+      </video>
+      <div class="faixa topo"></div><div class="faixa base"></div>
+      <div class="letreiros" aria-live="polite">
+        <p class="letreiro" data-t="0.6" data-ate="3.9">Numa noite de mistério…</p>
+        <p class="letreiro" data-t="5.3" data-ate="7.1">a máscara revela…</p>
+        <p class="letreiro grande" data-t="7.3" data-ate="9.3"><span data-c="nome"></span></p>
+        <p class="letreiro enorme" data-t="9.4" data-ate="10.8"><span data-c="idade"></span></p>
+        <p class="letreiro" data-t="11.2" data-ate="13.4">uma noite… dois momentos</p>
+        <p class="letreiro data" data-t="13.6" data-ate="99"><span data-c="dataPontos"></span></p>
+      </div>
+      <button class="pular" id="pular" type="button">Pular ▸▸</button>
+    </div>
+  </div>
+  <main class="convite">
+
+    <header class="hero">
+      <div class="hero-moldura">
+        <img src="fotos/corpo.jpg" alt="Lis Caldas de vestido preto e dourado com máscara, ao lado do bolo de 50 anos">
+      </div>
+      <p class="hero-k">Um convite para uma noite especial</p>
+      <h1 class="hero-nome" data-c="nome">Lis Caldas</h1>
+      <p class="hero-sub"><b data-c="idade"></b> <span>tons de felicidade</span></p>
+      <div class="filete"><i>✦</i></div>
+      <p class="hero-data"><span data-c="dataCompleta"></span> · <span data-c="hora"></span></p>
+      <p class="hero-msg" data-c="mensagem"></p>
+    </header>
+    <!-- A NOITE -->
+    <section class="secao" id="noite">
+      <p class="sobre reveal">✦</p>
+      <h2 class="titulo reveal">A noite</h2>
+      <p class="lead reveal" data-c="convite"></p>
+
+      <div class="contagem reveal" aria-label="Contagem regressiva">
+        <div><b data-cd="d">00</b><small>dias</small></div>
+        <div><b data-cd="h">00</b><small>horas</small></div>
+        <div><b data-cd="m">00</b><small>min</small></div>
+        <div><b data-cd="s">00</b><small>seg</small></div>
+      </div>
+      <p class="chegou" data-cd-fim hidden>A noite chegou ✦</p>
+
+      <div class="infos">
+        <article class="info reveal">
+          <small>Quando</small>
+          <strong><span data-c="semana"></span>, <span data-c="dataCompleta"></span></strong>
+          <p>às <span data-c="hora"></span></p>
+        </article>
+        <article class="info reveal">
+          <small>Onde</small>
+          <strong data-c="localEndereco"></strong>
+          <p>ao ar livre, sob as luzes</p>
+        </article>
+        <article class="info reveal">
+          <small>Clima</small>
+          <p data-c="clima"></p>
+        </article>
+      </div>
+      <div class="mapa reveal" data-mapa></div>
+      <div class="botoes reveal">
+        <a class="btn" data-maps>Google Maps</a>
+        <a class="btn" data-waze>Waze</a>
+      </div>
+    </section>
+
+    <!-- GALERIA -->
+    <section class="secao" id="cenario" data-se="galeria">
+      <p class="sobre reveal">✦</p>
+      <h2 class="titulo reveal">O cenário</h2>
+      <div class="galeria reveal" data-galeria></div>
+    </section>
+
+    <!-- DRESS CODE -->
+    <section class="secao" id="traje" data-se="traje">
+      <p class="sobre reveal">✦</p>
+      <h2 class="titulo reveal">Dress code</h2>
+      <div class="traje-caixa reveal">
+        <span class="traje-cor" aria-hidden="true"></span>
+        <strong data-c="traje"></strong>
+        <p data-c="trajeTexto"></p>
+        <div class="traje-aviso" data-se="aviso">
+          <img src="fotos/mascara.jpg" alt="Máscara veneziana preta e dourada" loading="lazy">
+          <p>🎭 <b data-c="trajeAviso"></b></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRESENTES -->
+    <section class="secao" id="presentes" data-se="presentes">
+      <p class="sobre reveal">✦</p>
+      <h2 class="titulo reveal">Mimos para a <span data-c="primeiroNome"></span></h2>
+      <p class="lead reveal" data-c="presentesTexto"></p>
+      <div class="presentes reveal" data-presentes></div>
+      <p class="nota reveal">Toque em um mimo para ver o QR Code e o Pix copia e cola com o valor certinho.</p>
+    </section>
+
+    <!-- CONFIRMAÇÃO -->
+    <section class="secao" id="confirmar">
+      <p class="sobre reveal">✦</p>
+      <h2 class="titulo reveal">Sua presença faz parte da festa</h2>
+      <p class="lead reveal">Confirme com o <span data-c="quemConfirma"></span> pelo WhatsApp.</p>
+      <form class="form reveal" data-rsvp novalidate>
+        <label class="campo"><span>Seu nome</span><input name="nome" autocomplete="name" maxlength="60" placeholder="Nome e sobrenome" required></label>
+        <div class="escolha" role="radiogroup" aria-label="Você vai?">
+          <label><input type="radio" name="vai" value="sim" checked><span>Estarei presente</span></label>
+          <label><input type="radio" name="vai" value="nao"><span>Não poderei ir</span></label>
+        </div>
+        <label class="campo" data-linha-acomp><span>Quantas pessoas</span><select name="acomp"></select></label>
+        <label class="campo"><span>Mensagem para a aniversariante (opcional)</span><textarea name="recado" rows="2" maxlength="300" placeholder="Deixe um carinho…"></textarea></label>
+        <button class="btn btn-cheio" type="submit">Confirmar presença</button>
+      </form>
+      <div class="botoes coluna reveal">
+        <a class="btn" data-agenda="google">Salvar no Google Agenda</a>
+        <button class="btn" type="button" data-agenda="ics">Salvar na agenda do celular</button>
+      </div>
+    </section>
+
+    <footer class="rodape">
+      <p class="frase reveal">“<span data-c="frase"></span>”</p>
+      <p class="assinatura reveal" data-c="nome"></p>
+      <p class="rodape-data"><span data-c="idade"></span> anos · <span data-c="dataPontos"></span></p>
+      <a class="credito" href="https://www.instagram.com/salaessol/" target="_blank" rel="noopener noreferrer">Convite digital por <b>Sales Soluções</b> · @salaessol</a>
+    </footer>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="qr.js"></script>
+  <script src="app.js"></script>
+  <script src="efeito.js"></script>
+</body>
+</html>

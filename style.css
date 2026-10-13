@@ -1,0 +1,145 @@
+/* ===== MODELO 2 — A REVELAÇÃO ===== */
+:root {
+  --fundo: #080706; --txt: #f6eedd; --suave: #bfb29c; --ouro: #d7ad58; --ouro2: #f3d995;
+  --fonte-titulo: 'Cormorant Garamond', Georgia, serif; --fonte-texto: 'Cormorant Garamond', Georgia, serif; --raio: 20px;
+  --grad-ouro: linear-gradient(110deg, #a8792a 10%, #f3d995 35%, #fff4d2 48%, #d7ad58 62%, #8f6720 90%);
+}
+body { font-size: 18px; }
+
+/* ---------- ABERTURA ---------- */
+.abertura { position: fixed; inset: 0; z-index: 7500; overflow: hidden; background: radial-gradient(70% 50% at 50% 45%, #1c150b 0%, #000 75%); transition: opacity 1.4s ease, visibility 1.4s; }
+.abertura.saindo { opacity: 0; visibility: hidden; }
+.palco3d { position: absolute; left: 50%; top: 44%; transform: translate(-50%, -50%); perspective: 1200px; }
+.carta3d { position: relative; width: min(74vw, 340px); aspect-ratio: 3 / 4; transform-style: preserve-3d; transition: transform 1.8s cubic-bezier(.65,0,.25,1); animation: flutua 5s ease-in-out infinite; }
+.lado { position: absolute; inset: 0; overflow: hidden; border-radius: 18px; -webkit-backface-visibility: hidden; backface-visibility: hidden; border: 1px solid #f3d99577; box-shadow: 0 30px 70px #000, 0 0 40px #d7ad5822; }
+.lado img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.lado.costas img { object-position: 50% 0; transform: scale(1.6); transform-origin: 50% 6%; filter: brightness(.75) contrast(1.05); }
+.lado.frente img { object-position: 50% 30%; }
+.lado.frente { transform: rotateY(180deg); }
+.abertura.virou .carta3d { transform: rotateY(180deg) scale(1.04); animation: none; }
+.abertura.virou .lado.frente { animation: brilhoFoto 1.6s .9s ease-out both; }
+
+.fumaca { position: absolute; inset: 0; pointer-events: none; }
+.fumaca i { position: absolute; bottom: -20%; width: 90vw; height: 70vh; left: 50%; border-radius: 50%; background: radial-gradient(ellipse, #000000cc 0%, #1a130acc 35%, #d7ad5822 60%, transparent 72%); filter: blur(30px); animation: fumaca 9s ease-in-out infinite alternate; }
+.fumaca i:nth-child(2) { left: 10%; animation-duration: 11s; animation-delay: -3s; }
+.fumaca i:nth-child(3) { left: 85%; animation-duration: 13s; animation-delay: -6s; }
+.abertura.virou .fumaca { animation: dissipa 2s ease forwards; }
+
+.ab-txt { position: absolute; left: 0; right: 0; bottom: 6vh; z-index: 3; display: grid; justify-items: center; gap: 10px; padding: 0 24px; text-align: center; transition: opacity .6s, transform .6s; }
+.ab-k { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: .5em; text-transform: uppercase; color: var(--ouro); }
+.ab-misterio { font-style: italic; font-size: 24px; color: var(--txt); text-shadow: 0 2px 14px #000; }
+.ab-txt .btn { margin-top: 6px; min-width: 240px; }
+.abertura.virou .ab-txt { opacity: 0; transform: translateY(20px); pointer-events: none; }
+.ab-final { pointer-events: none; position: absolute; left: 0; right: 0; bottom: 7vh; z-index: 3; text-align: center; opacity: 0; transform: translateY(20px); transition: opacity 1.2s 1.6s, transform 1.2s 1.6s; }
+.abertura.virou .ab-final { opacity: 1; transform: none; }
+.ab-nome { font-family: 'Pinyon Script', cursive; font-size: clamp(54px, 16vw, 76px); line-height: 1; background: var(--grad-ouro); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 4px 16px #000); }
+.ab-50 { font-family: 'Cinzel', serif; font-size: 22px; letter-spacing: .3em; color: var(--ouro2); }
+.ab-50 small { font-size: 12px; }
+
+/* ---------- HERO ---------- */
+.convite { max-width: 560px; margin: 0 auto; position: relative; }
+.hero { position: relative; padding: 56px 24px 50px; text-align: center; overflow: hidden; background: radial-gradient(90% 50% at 50% 20%, #241a0c 0%, var(--fundo) 70%); }
+.hero-moldura { position: relative; z-index: 2; width: min(72%, 300px); aspect-ratio: 2 / 3; margin: 0 auto 30px; border-radius: 999px 999px 16px 16px; overflow: hidden; outline: 1px solid var(--ouro); outline-offset: 8px; box-shadow: 0 30px 60px #000c, 0 0 50px #d7ad5822; }
+.hero-moldura img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 12%; animation: kenburns 20s ease-out both; }
+.hero-k { position: relative; z-index: 2; font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: .4em; text-transform: uppercase; color: var(--ouro); }
+.hero-nome { position: relative; z-index: 2; font-family: 'Pinyon Script', cursive; font-weight: 400; font-size: clamp(64px, 19vw, 92px); line-height: 1.05; margin: 8px 0 0; background: var(--grad-ouro); background-size: 220% auto; -webkit-background-clip: text; background-clip: text; color: transparent; animation: varre 6s ease-in-out infinite; }
+.hero-sub { position: relative; z-index: 2; display: flex; align-items: baseline; justify-content: center; gap: 10px; font-style: italic; font-size: 22px; color: var(--txt); }
+.hero-sub b { font-family: 'Cinzel', serif; font-style: normal; font-weight: 500; font-size: 54px; background: var(--grad-ouro); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.filete { position: relative; z-index: 2; display: flex; align-items: center; justify-content: center; gap: 12px; margin: 18px auto; color: var(--ouro); }
+.filete::before, .filete::after { content: ''; width: 70px; height: 1px; background: linear-gradient(90deg, transparent, var(--ouro)); }
+.filete::after { transform: scaleX(-1); }
+.filete i { font-style: normal; }
+.hero-data { position: relative; z-index: 2; font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: .2em; text-transform: uppercase; color: var(--ouro2); }
+.hero-msg { position: relative; z-index: 2; font-size: 19px; line-height: 1.55; color: var(--suave); max-width: 420px; margin: 16px auto 0; }
+
+/* ---------- SEÇÕES ---------- */
+.secao { position: relative; padding: 60px 24px; }
+.secao:nth-of-type(odd) { background: linear-gradient(180deg, transparent, #120e08 50%, transparent); }
+.sobre { text-align: center; color: var(--ouro); font-size: 16px; margin-bottom: 6px; }
+.titulo { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 400; font-size: clamp(34px, 10vw, 44px); line-height: 1.1; text-align: center; background: var(--grad-ouro); background-size: 220% auto; -webkit-background-clip: text; background-clip: text; color: transparent; animation: varre 7s ease-in-out infinite; margin-bottom: 12px; }
+.lead { text-align: center; font-size: 19px; line-height: 1.55; color: var(--suave); max-width: 440px; margin: 0 auto 28px; }
+.nota { text-align: center; font-size: 15px; font-style: italic; color: var(--suave); margin-top: 16px; }
+
+.contagem { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; max-width: 400px; margin: 0 auto 30px; }
+.contagem div { aspect-ratio: 1; border-radius: 50%; display: grid; place-content: center; text-align: center; border: 1px solid #d7ad5888; background: radial-gradient(circle at 30% 25%, #2a2010, #0b0907 70%); box-shadow: inset 0 0 0 4px #0b0907, inset 0 0 0 5px #d7ad5833, 0 10px 24px #0008; }
+.contagem b { font-family: 'Cinzel', serif; font-weight: 400; font-size: clamp(20px, 6.5vw, 28px); color: var(--ouro2); line-height: 1; }
+.contagem small { font-size: 11px; color: var(--suave); }
+.chegou { text-align: center; font-style: italic; font-size: 24px; color: var(--ouro2); margin: -12px 0 20px; }
+
+.infos { display: grid; gap: 12px; margin-bottom: 22px; }
+.info { text-align: center; padding: 22px 18px; border-radius: 20px; border: 1px solid #d7ad5844; background: linear-gradient(160deg, #ffffff08, #ffffff02); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.info small { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: .4em; text-transform: uppercase; color: var(--ouro); }
+.info strong { display: block; font-weight: 500; font-size: 21px; line-height: 1.3; color: var(--txt); margin: 4px 0; }
+.info strong::first-letter { text-transform: uppercase; }
+.info p { font-size: 17px; line-height: 1.45; color: var(--suave); }
+
+.galeria { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.foto { position: relative; border-radius: 16px; overflow: hidden; border: 1px solid #d7ad5844; }
+.foto:first-child { grid-column: span 2; }
+.foto img { display: block; width: 100%; height: 100%; aspect-ratio: 1; object-fit: cover; transition: transform 1s; }
+.foto:first-child img { aspect-ratio: 16/9; }
+.foto:hover img { transform: scale(1.05); }
+.foto figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 22px 12px 10px; background: linear-gradient(transparent, #000b); font-style: italic; font-size: 15px; color: var(--ouro2); text-align: center; }
+
+.traje-caixa { text-align: center; padding: 30px 20px; border-radius: 24px; border: 1px solid #d7ad5855; background: radial-gradient(circle at top, #22190c, #0b0907 70%); }
+.traje-cor { display: block; width: 50px; height: 50px; margin: 0 auto 12px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #333, #000 60%); border: 1px solid var(--ouro); }
+.traje-caixa strong { display: block; font-family: 'Cinzel', serif; font-weight: 500; font-size: 19px; letter-spacing: .12em; color: var(--ouro2); }
+.traje-caixa > p { font-size: 18px; color: var(--suave); margin-top: 6px; }
+.traje-aviso { margin-top: 20px; padding-top: 18px; border-top: 1px solid #d7ad5833; }
+.traje-aviso img { width: 170px; border-radius: 14px; margin-bottom: 10px; }
+.traje-aviso p { font-size: 18px; color: var(--ouro2); }
+
+.rodape { text-align: center; padding: 60px 24px 90px; }
+.frase { font-style: italic; font-size: 22px; line-height: 1.5; color: var(--txt); max-width: 420px; margin: 0 auto; }
+.assinatura { font-family: 'Pinyon Script', cursive; font-size: 58px; background: var(--grad-ouro); -webkit-background-clip: text; background-clip: text; color: transparent; margin-top: 18px; }
+.rodape-data { font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: .3em; color: var(--ouro); }
+.credito { color: var(--suave); }
+
+@keyframes flutua { 0%, 100% { transform: translateY(0) rotateY(-6deg); } 50% { transform: translateY(-10px) rotateY(6deg); } }
+@keyframes fumaca { from { transform: translate(-50%, 10%) scale(.9); opacity: .9; } to { transform: translate(-46%, -18%) scale(1.2); opacity: .6; } }
+@keyframes dissipa { to { opacity: 0; } }
+@keyframes brilhoFoto { 0% { filter: brightness(2.2) saturate(.6); } 100% { filter: none; } }
+@keyframes kenburns { from { transform: scale(1.12); } to { transform: scale(1); } }
+@keyframes varre { 0%, 100% { background-position: 0% center; } 50% { background-position: 100% center; } }
+
+.foto:last-child:nth-child(even) { grid-column: span 2; }
+.foto:last-child:nth-child(even) img { aspect-ratio: 16/9; }
+
+/* ---- vídeo de abertura (máscara na fumaça) ---- */
+.ab-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.ab-escurece { position: absolute; inset: 0; background: linear-gradient(180deg, #0006 0%, transparent 30%, transparent 55%, #000d 85%); transition: background-color 1s; }
+.abertura.virou .ab-escurece { background-color: #000b; }
+.fumaca { opacity: .45; }
+.palco3d { opacity: 0; transform: translate(-50%, -50%) scale(.55); transition: opacity .9s ease, transform 1.2s cubic-bezier(.2,.9,.25,1); pointer-events: none; }
+.abertura.virou .palco3d { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+.abertura.virou .carta3d { transition-delay: 1.1s; }
+.abertura.virou .lado.frente img { animation: brilhoFoto 1.6s 2s ease-out both; }
+.abertura.virou .ab-final { transition-delay: 2.6s; }
+
+/* ---- versão final: filme da Lis ---- */
+.palco3d, .ab-final { display: none !important; }
+.ab-som { font-size: 14px; font-style: italic; color: var(--suave); }
+.abertura.virou .ab-txt { opacity: 0; pointer-events: none; }
+.filme { position: absolute; inset: 0; z-index: 10; background: #000; opacity: 0; transition: opacity .9s ease; overflow: hidden; }
+.filme.on { opacity: 1; }
+.filme video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.filme.sem-video video { display: none; }
+.filme.sem-video { background: #000 url('fotos/corpo.jpg') center 20% / cover; animation: kenburns 16s ease-out forwards; }
+.filme .faixa { position: absolute; left: 0; right: 0; height: 0; background: #000; z-index: 3; transition: height 1.2s cubic-bezier(.7,0,.2,1); }
+.filme .faixa.topo { top: 0; } .filme .faixa.base { bottom: 0; }
+.filme.on .faixa { height: 10vh; }
+.filme.fechando .faixa { height: 51vh; transition-duration: .7s; }
+.letreiros { position: absolute; inset: 0; z-index: 4; display: grid; place-items: center; pointer-events: none; }
+.letreiro { grid-area: 1 / 1; max-width: 88%; text-align: center; font-style: italic; font-size: clamp(26px, 7.5vw, 36px); color: #fff8e6; text-shadow: 0 2px 20px #000, 0 0 40px #000; opacity: 0; letter-spacing: .3em; filter: blur(8px); transition: opacity 1s ease, letter-spacing 2.6s cubic-bezier(.2,.8,.2,1), filter 1.2s; }
+.letreiro.on { opacity: 1; letter-spacing: .03em; filter: blur(0); }
+.letreiro.fora { opacity: 0; filter: blur(6px); transition-duration: .8s; }
+.letreiro.grande, .letreiro.enorme, .letreiro.data { font-family: 'Cinzel', serif; font-style: normal; background: var(--grad-ouro); -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: none; filter: drop-shadow(0 4px 18px #000) blur(8px); }
+.letreiro.grande { font-size: clamp(36px, 11vw, 58px); letter-spacing: .45em; }
+.letreiro.grande.on { letter-spacing: .07em; filter: drop-shadow(0 4px 18px #000); }
+.letreiro.enorme { font-size: clamp(130px, 46vw, 220px); line-height: 1; letter-spacing: 0; transform: scale(1.35); transition: opacity 1s, transform 2.4s cubic-bezier(.2,.8,.2,1), filter 1.1s; }
+.letreiro.enorme.on { transform: none; filter: drop-shadow(0 6px 30px #000); }
+.letreiro.data { font-size: clamp(24px, 7vw, 32px); letter-spacing: .3em; }
+.letreiro.data.on { letter-spacing: .14em; filter: drop-shadow(0 4px 18px #000); }
+.letreiros .letreiro:not(.grande):not(.enorme):not(.data) { align-self: end; margin-bottom: 18vh; }
+.pular { position: absolute; z-index: 5; right: 16px; bottom: calc(10vh + 14px); padding: 9px 16px; border-radius: 999px; border: 1px solid #ffffff44; background: #0008; color: #fff; font-size: 13px; letter-spacing: .1em; opacity: .8; }
+.letreiro.grande { align-self: end; margin-bottom: 16vh; }
