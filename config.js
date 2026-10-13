@@ -18,8 +18,8 @@ window.CONVITE = {
 
   local: {
     nome: 'Local da festa',
-    endereco: 'Trav. 3 da Av. Domingos Maia, 260 – Mosqueiro',
-    busca: 'Trav. 3 da Av. Domingos Maia, 260, Mosqueiro', // texto usado no Google Maps
+    endereco: 'Trav. 3 da Av. Domingos Maia, 260 – Mosqueiro, Aracaju/SE',
+    busca: 'Rua José Domingos Maia III, 260, Mosqueiro, Aracaju - SE, 49009-073', // texto usado no Google Maps
   },
   clima: 'Baile de máscaras, mesas ao ar livre, luzes quentes e uma noite para guardar na memória.',
 
@@ -60,6 +60,6 @@ window.CONVITE = {
   ],
 
   // Música: coloque o arquivo na pasta do modelo com este nome. '' = sem música
-  musica: 'musica.mp3',
+  musica: 'musica.mp3?v=202610131952',
   sons: false, // sem toques: o suspense vem do som do próprio filme
 };

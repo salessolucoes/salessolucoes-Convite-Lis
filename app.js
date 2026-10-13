@@ -178,37 +178,46 @@
      ============================================================ */
   window.musica = (() => {
     if (!C.musica) return { tocar() {}, desbloquear() {}, tocando: () => false, existe: false };
-    const a = new Audio(); a.src = C.musica; a.loop = true; a.preload = 'auto'; a.volume = 0;
-    let quer = false, falhou = false, btn = null;
+    const a = new Audio(); a.src = C.musica; a.loop = true; a.preload = 'auto';
+    let ligada = false, falhou = false, btn = null, esperaToque = false;
     a.addEventListener('error', () => { falhou = true; btn && btn.remove(); });
     function botao() {
       if (btn || falhou) return;
       btn = el('button', 'btn-musica'); btn.type = 'button'; btn.setAttribute('aria-label', 'Ligar ou desligar a música');
       for (let i = 0; i < 4; i++) btn.appendChild(el('i'));
-      btn.addEventListener('click', () => { quer ? pausa() : tocar(); });
+      btn.addEventListener('click', (e) => { e.stopPropagation(); ligada ? pausa() : tocar(); });
       document.body.appendChild(btn);
     }
-    function fade(alvo, ms = 1800) {
-      const ini = a.volume, t0 = performance.now();
-      (function passo(t) { const p = Math.min(1, (t - t0) / ms); a.volume = ini + (alvo - ini) * p; if (p < 1) requestAnimationFrame(passo); else if (alvo === 0) a.pause(); })(t0);
+    const marca = () => btn && btn.classList.toggle('tocando', ligada);
+    /* se o navegador bloquear, o PRÓXIMO toque em qualquer lugar liga a música */
+    function tentarNoToque() {
+      if (esperaToque) return; esperaToque = true;
+      const f = () => { esperaToque = false; document.removeEventListener('pointerdown', f, true); tocar(); };
+      document.addEventListener('pointerdown', f, true);
     }
     function tocar() {
-      if (falhou) return; quer = true; botao();
-      const p = a.play(); if (p) p.then(() => { fade(0.55); btn && btn.classList.add('tocando'); }).catch(() => { btn && btn.classList.remove('tocando'); });
+      if (falhou) return; botao();
+      // se já está rodando mudo (liberada no toque de abertura), só tira o mudo: não precisa de novo toque
+      if (!a.paused && a.muted) { a.currentTime = 0; a.muted = false; a.volume = 1; ligada = true; marca(); return; }
+      a.muted = false; a.volume = 1;
+      const p = a.play();
+      if (p && p.then) p.then(() => { ligada = true; marca(); }).catch(() => { ligada = false; marca(); tentarNoToque(); });
+      else { ligada = true; marca(); }
     }
-    function pausa() { quer = false; fade(0, 600); btn && btn.classList.remove('tocando'); }
+    function pausa() { ligada = false; a.pause(); marca(); }
     document.addEventListener('visibilitychange', () => {
-      if (document.hidden && !a.paused) { a.pause(); } else if (!document.hidden && quer) { a.play().catch(() => {}); }
+      if (document.hidden && !a.paused) a.pause();
+      else if (!document.hidden && ligada) a.play().catch(() => {});
     });
-    /* chamado no toque do convidado: libera o áudio no celular para tocar depois, sozinho */
+    /* chamado DENTRO do toque do convidado: a música começa a rodar sem som,
+       e no fim do filme é só tirar o mudo (funciona no iPhone, Android e PC) */
     function desbloquear() {
       if (falhou) return;
       a.muted = true;
       const p = a.play();
-      const fim = () => { a.pause(); a.currentTime = 0; a.muted = false; };
-      if (p && p.then) p.then(fim).catch(() => { a.muted = false; }); else fim();
+      if (p && p.catch) p.catch(() => {});
     }
-    return { tocar, pausa, desbloquear, tocando: () => quer && !a.paused, existe: true };
+    return { tocar, pausa, desbloquear, tocando: () => ligada && !a.paused && !a.muted, existe: true };
   })();
 
   /* ============================================================
@@ -263,7 +272,7 @@
     for (let i = 0; i < qtd; i++) ps.push({ x: Math.random() * W, y: Math.random() * H, r: Math.random() * 1.6 + 0.4, v: Math.random() * 0.35 + 0.1, d: (Math.random() - 0.5) * 0.3, f: Math.random() * 6 });
     if ('IntersectionObserver' in window) new IntersectionObserver((e) => { vis = e[0].isIntersecting; if (vis) requestAnimationFrame(loop); }).observe(cv);
     function loop() {
-      if (!vis) return;
+      if (!vis || !cv.isConnected) return;
       ctx.clearRect(0, 0, W, H);
       for (const p of ps) {
         p.y -= p.v; p.x += p.d; p.f += 0.03; if (p.y < -5) { p.y = H + 5; p.x = Math.random() * W; }

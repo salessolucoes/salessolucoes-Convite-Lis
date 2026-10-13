@@ -37,7 +37,11 @@
     som.toque();
     musica.desbloquear();             // libera a música para tocar sozinha no fim do filme
     ab.classList.add('virou');
+    try { mascara && mascara.pause(); } catch {}
+    const pz = ab.querySelector('.poeira'); if (pz) pz.remove();   // menos coisa rodando = sem travar
     filme.hidden = false;
+    video.addEventListener('waiting', () => filme.classList.add('carregando'));
+    video.addEventListener('playing', () => filme.classList.remove('carregando'));
     requestAnimationFrame(() => filme.classList.add('on'));
     t0 = performance.now();
     // o filme toca COM o som de suspense dos vídeos (permitido porque veio do toque)

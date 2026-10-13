@@ -21,3 +21,9 @@ EDITAR (config.js)
 PRÉVIA NO WHATSAPP
 - No index.html troque content="fotos/capa-whatsapp.jpg" pelo link completo:
   https://SEU-USUARIO.github.io/NOME-DO-REPO/fotos/capa-whatsapp.jpg
+
+ATUALIZAÇÕES E CACHE
+- O navegador guarda a versão antiga por alguns minutos (o GitHub Pages guarda por 10 min).
+- Cada arquivo tem "?v=número" no index.html: sempre que eu mandar versão nova, esse número muda
+  e o celular é obrigado a baixar tudo de novo.
+- Para ver na hora no PC: Ctrl + F5. No celular: abra em aba anônima.

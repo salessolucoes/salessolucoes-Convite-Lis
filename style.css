@@ -144,3 +144,10 @@ body { font-size: 18px; }
 .pular { position: absolute; z-index: 5; right: 16px; bottom: calc(10vh + 14px); padding: 9px 16px; border-radius: 999px; border: 1px solid #ffffff44; background: #0008; color: #fff; font-size: 13px; letter-spacing: .1em; opacity: .8; }
 .letreiro.grande { align-self: end; margin-bottom: 16vh; }
 .letreiro.data { align-self: end; margin-bottom: 16vh; }
+
+/* carregando (internet lenta) */
+.filme.carregando::after { content: ''; position: absolute; left: 50%; top: 50%; z-index: 6; width: 46px; height: 46px; margin: -23px 0 0 -23px; border-radius: 50%; border: 2px solid #f3d99533; border-top-color: var(--ouro2); animation: gira .9s linear infinite; }
+@keyframes gira { to { transform: rotate(360deg); } }
+/* evita selecionar texto (aquele azul) ao tocar várias vezes */
+.abertura, .filme, .hero, .titulo, .sobre, .rodape { -webkit-user-select: none; user-select: none; }
+body { -webkit-tap-highlight-color: transparent; }
