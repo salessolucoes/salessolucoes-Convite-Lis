@@ -6,7 +6,7 @@
   const ab = $('abertura'), btn = $('revelar'), mascara = $('abVideo');
   const filme = $('filme'), video = $('filmeVideo'), pular = $('pular');
   const letreiros = [...document.querySelectorAll('.letreiro')].map((e) => ({ e, ini: +e.dataset.t, fim: +e.dataset.ate }));
-  const DURACAO = 15.2;
+  const DURACAO = 17.5;
   let comecou = false, terminou = false, relogio = false, t0 = 0, ultimo = -1, parado = 0;
 
   if (mascara) { const p = mascara.play(); if (p && p.catch) p.catch(() => {}); }
@@ -40,13 +40,14 @@
     filme.hidden = false;
     requestAnimationFrame(() => filme.classList.add('on'));
     t0 = performance.now();
+    // o filme toca COM o som de suspense dos vídeos (permitido porque veio do toque)
+    video.muted = false; video.volume = 1;
     const p = video.play();
-    if (p && p.catch) p.catch(usarRelogio);
+    if (p && p.catch) p.catch(() => { video.muted = true; const q = video.play(); if (q && q.catch) q.catch(usarRelogio); });
     video.addEventListener('error', usarRelogio, { once: true });
     const src = video.querySelector('source');
     if (src) src.addEventListener('error', usarRelogio, { once: true });
     video.addEventListener('ended', terminar, { once: true });
-    setTimeout(() => som.revelar(0.1), 5200);
     setTimeout(() => requestAnimationFrame(quadro), 200);
   }
 

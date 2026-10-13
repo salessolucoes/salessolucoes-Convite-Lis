@@ -143,3 +143,4 @@ body { font-size: 18px; }
 .letreiros .letreiro:not(.grande):not(.enorme):not(.data) { align-self: end; margin-bottom: 18vh; }
 .pular { position: absolute; z-index: 5; right: 16px; bottom: calc(10vh + 14px); padding: 9px 16px; border-radius: 999px; border: 1px solid #ffffff44; background: #0008; color: #fff; font-size: 13px; letter-spacing: .1em; opacity: .8; }
 .letreiro.grande { align-self: end; margin-bottom: 16vh; }
+.letreiro.data { align-self: end; margin-bottom: 16vh; }
