@@ -60,6 +60,6 @@ window.CONVITE = {
   ],
 
   // Música: coloque o arquivo na pasta do modelo com este nome. '' = sem música
-  musica: 'musica.mp3?v=202610131952',
+  musica: 'musica.mp3?v=202610132014',
   sons: false, // sem toques: o suspense vem do som do próprio filme
 };

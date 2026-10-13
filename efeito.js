@@ -61,6 +61,7 @@
     setTimeout(() => {
       try { video.pause(); } catch {}
       abrirConvite();
+      const hv = document.querySelector('.hero-video'); if (hv) { const q = hv.play(); if (q && q.catch) q.catch(() => {}); }
       musica.tocar();                 // música começa sozinha depois do filme e repete no fim
       festa.chuva({ duracao: 2400, densidade: 2 });
     }, 700);
