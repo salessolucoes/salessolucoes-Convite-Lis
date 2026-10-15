@@ -6,7 +6,7 @@
   const ab = $('abertura'), btn = $('revelar'), mascara = $('abVideo');
   const filme = $('filme'), video = $('filmeVideo'), pular = $('pular');
   const letreiros = [...document.querySelectorAll('.letreiro')].map((e) => ({ e, ini: +e.dataset.t, fim: +e.dataset.ate }));
-  const DURACAO = 17.5;
+  const DURACAO = 9.9;
   let comecou = false, terminou = false, relogio = false, t0 = 0, ultimo = -1, parado = 0;
 
   if (mascara) { const p = mascara.play(); if (p && p.catch) p.catch(() => {}); }
