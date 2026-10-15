@@ -39,7 +39,7 @@ body { font-size: 18px; }
 /* ---------- HERO ---------- */
 .convite { max-width: 560px; margin: 0 auto; position: relative; }
 .hero { position: relative; padding: 56px 24px 50px; text-align: center; overflow: hidden; background: radial-gradient(90% 50% at 50% 20%, #241a0c 0%, var(--fundo) 70%); }
-.hero-moldura { position: relative; z-index: 2; width: min(72%, 300px); aspect-ratio: 2 / 3; margin: 0 auto 30px; border-radius: 999px 999px 16px 16px; overflow: hidden; outline: 1px solid var(--ouro); outline-offset: 8px; box-shadow: 0 30px 60px #000c, 0 0 50px #d7ad5822; }
+.hero-moldura { position: relative; z-index: 2; width: min(66%, 290px); aspect-ratio: 4 / 7; margin: 0 auto 30px; border-radius: 999px 999px 16px 16px; overflow: hidden; outline: 1px solid var(--ouro); outline-offset: 8px; box-shadow: 0 30px 60px #000c, 0 0 50px #d7ad5822; }
 .hero-moldura img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 12%; animation: kenburns 20s ease-out both; }
 .hero-k { position: relative; z-index: 2; font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: .4em; text-transform: uppercase; color: var(--ouro); }
 .hero-nome { position: relative; z-index: 2; font-family: 'Pinyon Script', cursive; font-weight: 400; font-size: clamp(64px, 19vw, 92px); line-height: 1.05; margin: 8px 0 0; background: var(--grad-ouro); background-size: 220% auto; -webkit-background-clip: text; background-clip: text; color: transparent; animation: varre 6s ease-in-out infinite; }
@@ -122,9 +122,10 @@ body { font-size: 18px; }
 .abertura.virou .ab-txt { opacity: 0; pointer-events: none; }
 .filme { position: absolute; inset: 0; z-index: 10; background: #000; opacity: 0; transition: opacity .9s ease; overflow: hidden; }
 .filme.on { opacity: 1; }
-.filme video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+/* o vídeo fica entre as faixas de cinema e nunca é cortado (cabeça e pés sempre aparecem) */
+.filme video { position: absolute; left: 0; right: 0; top: 10vh; width: 100%; height: 80vh; object-fit: contain; }
 .filme.sem-video video { display: none; }
-.filme.sem-video { background: #000 url('fotos/corpo.jpg') center 20% / cover; animation: kenburns 16s ease-out forwards; }
+.filme.sem-video { background: #000 url('fotos/corpo.jpg') center / contain no-repeat; animation: kenburns 16s ease-out forwards; }
 .filme .faixa { position: absolute; left: 0; right: 0; height: 0; background: #000; z-index: 3; transition: height 1.2s cubic-bezier(.7,0,.2,1); }
 .filme .faixa.topo { top: 0; } .filme .faixa.base { bottom: 0; }
 .filme.on .faixa { height: 10vh; }
@@ -153,8 +154,18 @@ body { font-size: 18px; }
 body { -webkit-tap-highlight-color: transparent; }
 
 /* foto do vestido em movimento + brilho nas lantejoulas */
-.hero-moldura .hero-video { width: 100%; height: 100%; object-fit: cover; object-position: 50% 15%; display: block; }
+.hero-moldura .hero-video { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; display: block; background: #0b0907; }
 .brilho-vestido { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: screen;
   background: linear-gradient(115deg, transparent 35%, #fff3c855 47%, #ffffffaa 50%, #fff3c855 53%, transparent 65%) 0 0 / 300% 100% no-repeat;
   animation: brilhoVestido 4.5s ease-in-out infinite; }
 @keyframes brilhoVestido { 0% { background-position: 150% 0; } 60%, 100% { background-position: -150% 0; } }
+
+/* aviso "role para ver o convite" (aparece depois do filme e some ao rolar) */
+.dica-rolar { position: fixed; left: 50%; bottom: calc(22px + env(safe-area-inset-bottom)); z-index: 6900; display: grid; justify-items: center; gap: 5px; padding: 9px 16px 7px; border-radius: 999px; border: 1px solid #d7ad5866; background: #080706d9; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); box-shadow: 0 8px 24px #000a; color: var(--ouro2); font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; white-space: nowrap; cursor: pointer; opacity: 0; transform: translate(-50%, 14px); transition: opacity .8s ease, transform .8s ease; }
+.dica-rolar.on { opacity: 1; transform: translate(-50%, 0); }
+.dica-rolar i { width: 10px; height: 10px; border-right: 1.5px solid var(--ouro2); border-bottom: 1.5px solid var(--ouro2); animation: dicaDesce 1.6s ease-in-out infinite; }
+.dica-rolar.forte { animation: dicaPulsa 1.8s ease-in-out infinite; }
+.dica-rolar.forte i { animation-duration: 1s; }
+@keyframes dicaDesce { 0%, 100% { transform: translateY(-3px) rotate(45deg); opacity: .45; } 50% { transform: translateY(3px) rotate(45deg); opacity: 1; } }
+@keyframes dicaPulsa { 0%, 100% { box-shadow: 0 8px 24px #000a, 0 0 0 0 #d7ad5800; } 50% { box-shadow: 0 8px 24px #000a, 0 0 22px 2px #d7ad5866; } }
+@media (prefers-reduced-motion: reduce) { .dica-rolar i, .dica-rolar.forte { animation: none; } }

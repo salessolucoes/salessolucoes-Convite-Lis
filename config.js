@@ -18,8 +18,8 @@ window.CONVITE = {
 
   local: {
     nome: 'Local da festa',
-    endereco: 'Trav. 3 da Av. Domingos Maia, 260 – Mosqueiro, Aracaju/SE',
-    busca: 'Rua José Domingos Maia III, 260, Mosqueiro, Aracaju - SE, 49009-073', // texto usado no Google Maps
+    endereco: 'R. José Domingos Maia III, 260 – Mosqueiro, Aracaju/SE',
+    busca: 'R. José Domingos Maia III, 260, Mosqueiro, Aracaju - SE, 49009-073', // texto usado no Google Maps
   },
   clima: 'Baile de máscaras, mesas ao ar livre, luzes quentes e uma noite para guardar na memória.',
 
@@ -30,7 +30,7 @@ window.CONVITE = {
   // WhatsApp do cerimonial (55 + DDD + número, só números)
   whatsapp: '5579999975006',
   quemConfirma: 'Cerimonial',
-  maxAcompanhantes: 4,
+  maxAcompanhantes: 1, // só a pessoa + 1 acompanhante
 
   // PIX — o QR Code e o "copia e cola" são gerados automaticamente com o valor certo
   pix: {
@@ -60,6 +60,6 @@ window.CONVITE = {
   ],
 
   // Música: coloque o arquivo na pasta do modelo com este nome. '' = sem música
-  musica: 'musica.mp3?v=202610132014',
+  musica: 'musica.mp3',
   sons: false, // sem toques: o suspense vem do som do próprio filme
 };

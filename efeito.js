@@ -64,7 +64,26 @@
       const hv = document.querySelector('.hero-video'); if (hv) { const q = hv.play(); if (q && q.catch) q.catch(() => {}); }
       musica.tocar();                 // música começa sozinha depois do filme e repete no fim
       festa.chuva({ duracao: 2400, densidade: 2 });
+      setTimeout(dicaRolar, 1600);
     }, 700);
+  }
+
+  /* aviso para rolar: aparece depois do filme e some quando a pessoa rola a página */
+  function dicaRolar() {
+    if (window.scrollY > 40) return;
+    const d = document.createElement('button');
+    d.type = 'button'; d.className = 'dica-rolar';
+    d.innerHTML = '<span>role para ver o convite</span><i aria-hidden="true"></i>';
+    document.body.appendChild(d);
+    requestAnimationFrame(() => requestAnimationFrame(() => d.classList.add('on')));
+    const forte = setTimeout(() => d.classList.add('forte'), 6000);
+    function some() {
+      if (window.scrollY < 40) return;
+      clearTimeout(forte); window.removeEventListener('scroll', some);
+      d.classList.remove('on'); setTimeout(() => d.remove(), 900);
+    }
+    window.addEventListener('scroll', some, { passive: true });
+    d.addEventListener('click', () => { const alvo = document.getElementById('noite'); if (alvo) alvo.scrollIntoView({ behavior: 'smooth' }); });
   }
 
   btn.addEventListener('click', comecar);
