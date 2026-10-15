@@ -185,3 +185,17 @@ body { -webkit-tap-highlight-color: transparent; }
 .filme.on .faixa { transform: scaleY(1); }
 .filme.fechando .faixa { transform: scaleY(5.2); transition-duration: .7s; }
 .filme video { transform: translateZ(0); }
+
+/* espaço visível real (Chrome do Android esconde parte de 100vh atrás das barras): usa % do quadro do filme */
+.filme video { top: 10%; height: 80%; }
+.filme .faixa, .filme.on .faixa, .filme.fechando .faixa { height: 10%; }
+.pular { bottom: calc(10% + 14px); }
+.letreiros .letreiro:not(.grande):not(.enorme):not(.data) { margin-bottom: 18%; }
+.letreiro.grande, .letreiro.data { margin-bottom: 16%; }
+.abertura { height: 100%; height: 100dvh; }
+
+/* tela cheia: o vídeo ocupa a tela toda (corta só um pouco das laterais, nunca cabeça ou pés); faixas pretas só no fechamento */
+.filme video { top: 0; height: 100%; object-fit: cover; object-position: 50% 50%; }
+.filme.on .faixa { transform: scaleY(0); }
+.filme.fechando .faixa { transform: scaleY(5.2); }
+.pular { bottom: calc(14px + env(safe-area-inset-bottom)); }
