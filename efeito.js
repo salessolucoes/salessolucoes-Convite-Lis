@@ -11,7 +11,6 @@
 
   if (mascara) { const p = mascara.play(); if (p && p.catch) p.catch(() => {}); }
   poeira(ab, 30);
-  poeira(document.querySelector('.hero'), 30);
 
   const tempo = () => (relogio ? (performance.now() - t0) / 1000 : video.currentTime);
   function usarRelogio() {
@@ -63,8 +62,9 @@
       abrirConvite();
       const hv = document.querySelector('.hero-video'); if (hv) { const q = hv.play(); if (q && q.catch) q.catch(() => {}); }
       musica.tocar();                 // música começa sozinha depois do filme e repete no fim
-      festa.chuva({ duracao: 2400, densidade: 2 });
+      festa.chuva({ duracao: 2200, densidade: 1 });
       setTimeout(dicaRolar, 1600);
+      setTimeout(() => poeira(document.querySelector('.hero'), 24), 2200); // só depois do filme, pra não pesar
     }, 700);
   }
 

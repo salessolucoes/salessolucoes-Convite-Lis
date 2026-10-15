@@ -169,3 +169,19 @@ body { -webkit-tap-highlight-color: transparent; }
 @keyframes dicaDesce { 0%, 100% { transform: translateY(-3px) rotate(45deg); opacity: .45; } 50% { transform: translateY(3px) rotate(45deg); opacity: 1; } }
 @keyframes dicaPulsa { 0%, 100% { box-shadow: 0 8px 24px #000a, 0 0 0 0 #d7ad5800; } 50% { box-shadow: 0 8px 24px #000a, 0 0 22px 2px #d7ad5866; } }
 @media (prefers-reduced-motion: reduce) { .dica-rolar i, .dica-rolar.forte { animation: none; } }
+
+/* ===== desempenho: legendas e faixas animam só opacidade/posição (fluido no celular) ===== */
+.letreiro { filter: none !important; letter-spacing: .03em; transform: translate3d(0, 16px, 0); transition: opacity 1s ease, transform 1.6s cubic-bezier(.2,.8,.2,1) !important; will-change: opacity, transform; backface-visibility: hidden; }
+.letreiro.on { opacity: 1; transform: translate3d(0, 0, 0); }
+.letreiro.fora { opacity: 0; transform: translate3d(0, -10px, 0); transition-duration: .8s !important; }
+.letreiro.grande, .letreiro.grande.on { letter-spacing: .07em; }
+.letreiro.data, .letreiro.data.on { letter-spacing: .14em; }
+.letreiro.enorme { transform: scale(1.3); }
+.letreiro.enorme.on { transform: scale(1); }
+.letreiro.enorme.fora { transform: scale(.96); }
+.letreiro.grande, .letreiro.enorme, .letreiro.data { text-shadow: none; }
+.filme .faixa, .filme.on .faixa, .filme.fechando .faixa { height: 10vh; transform: scaleY(0); transition: transform 1.2s cubic-bezier(.7,0,.2,1); will-change: transform; }
+.filme .faixa.topo { transform-origin: top; } .filme .faixa.base { transform-origin: bottom; }
+.filme.on .faixa { transform: scaleY(1); }
+.filme.fechando .faixa { transform: scaleY(5.2); transition-duration: .7s; }
+.filme video { transform: translateZ(0); }
