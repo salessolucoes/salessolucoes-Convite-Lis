@@ -8,7 +8,7 @@ window.CONVITE = {
   idade: 50,
   tema: 'Baile de Máscaras',
   subtitulo: '50 tons de felicidade',
-  mensagem: 'Uma noite de elegância, luzes, máscaras e bons encontros para celebrar meio século de histórias.',
+  mensagem: 'Uma noite de elegância, luzes, máscaras e bons encontros para celebrar uma vida cheia de alegrias e bons momentos.',
   convite: 'Venha brindar comigo uma nova década cercada de pessoas especiais.',
   frase: 'A vida merece ser celebrada com luz, elegância e pessoas que fazem o coração sorrir.',
 
